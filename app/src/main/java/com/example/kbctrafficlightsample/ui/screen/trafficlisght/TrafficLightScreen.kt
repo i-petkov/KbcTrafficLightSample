@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,43 +22,55 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-fun TrafficLightScreen(viewModel: TrafficLightScreenInterface) {
-    Column(
-        modifier = Modifier
-            .padding(20.dp)
-            .width(100.dp)
-            .height(300.dp)
-            .fillMaxSize()
-            .background(Color.Black),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        val trafficLightState = viewModel.trafficLightState.collectAsStateWithLifecycle(initialValue = TrafficLightState.Default)
+fun TrafficLightScreen(carModel: String, viewModel: TrafficLightScreenInterface) {
 
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .padding(6.dp)
-            .weight(1F)
-            .background(trafficLightState.value.red)
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+        
+    ) {
+        Text(
+            modifier = Modifier.padding(12.dp),
+            text = "Car Model: $carModel"
         )
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .padding(6.dp)
-            .weight(1F)
-            .background(trafficLightState.value.orange)
-        )
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .padding(6.dp)
-            .weight(1F)
-            .background(trafficLightState.value.green)
-        )
+
+        Column(
+            modifier = Modifier
+                .padding(20.dp)
+                .width(100.dp)
+                .height(300.dp)
+                .fillMaxSize()
+                .background(Color.Black),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            val trafficLightState = viewModel.trafficLightState.collectAsStateWithLifecycle(initialValue = TrafficLightState.Default)
+
+            Spacer(modifier = Modifier
+                .fillMaxWidth()
+                .padding(6.dp)
+                .weight(1F)
+                .background(trafficLightState.value.red, shape = CircleShape)
+            )
+            Spacer(modifier = Modifier
+                .fillMaxWidth()
+                .padding(6.dp)
+                .weight(1F)
+                .background(trafficLightState.value.orange, shape = CircleShape)
+            )
+            Spacer(modifier = Modifier
+                .fillMaxWidth()
+                .padding(6.dp)
+                .weight(1F)
+                .background(trafficLightState.value.green, shape = CircleShape)
+            )
+        }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun TrafficLightScreenPreview() {
-    TrafficLightScreen(object : TrafficLightScreenInterface {
+    TrafficLightScreen("basar-carrrr", object : TrafficLightScreenInterface {
         override val trafficLightState: StateFlow<TrafficLightState>
             get() = MutableStateFlow(TrafficLightState.Default)
     })

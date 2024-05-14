@@ -8,9 +8,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.kbctrafficlightsample.ui.screen.carscreen.CarModelScreen
 import com.example.kbctrafficlightsample.ui.screen.carscreen.CarModelScreenViewModel
 import com.example.kbctrafficlightsample.ui.screen.trafficlisght.TrafficLightScreen
@@ -27,15 +29,24 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = Routes.Starting.route) {
                     composable(Routes.Starting.route) {
                         CarModelScreen(
-                            onCarModelConfirmed = { navController.navigate(Routes.TrafficLight.route) },
+                            onCarModelConfirmed = { model ->
+                                navController.navigate("${Routes.TrafficLight.route}/$model")
+                            },
                             viewModel = viewModel<CarModelScreenViewModel>(
                                 factory = CarModelScreenViewModel.Factory
                             )
                         )
                     }
 
-                    composable(Routes.TrafficLight.route) {
+                    composable(
+                        "${Routes.TrafficLight.route}/{model}",
+                        arguments = listOf(
+                            navArgument("model") { type = NavType.StringType }
+                        )
+                    ) {
+                        val carModel = it.arguments?.getString("model") ?: "N/A"
                         TrafficLightScreen(
+                            carModel,
                             viewModel = viewModel<TrafficLightScreenViewModel>(
                                 factory = TrafficLightScreenViewModel.Factory
                             )
@@ -45,12 +56,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
 }
