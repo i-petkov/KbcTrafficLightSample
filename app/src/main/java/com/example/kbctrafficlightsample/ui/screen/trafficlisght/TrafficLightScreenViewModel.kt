@@ -8,7 +8,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.kbctrafficlightsample.data.TRAFFIC_LIGHT_FULL_CYCLE_LENGTH
 import com.example.kbctrafficlightsample.data.TrafficLightState
 import com.example.kbctrafficlightsample.data.TRAFFIC_LIGHT_UPDATE_DELAY
-import com.example.kbctrafficlightsample.logic.configuration.AppLogicConfigurationProvider
+import com.example.kbctrafficlightsample.data.configuration.AppLogicConfigurationProvider
 import com.example.kbctrafficlightsample.logic.trafficlight.TrafficLightStateFactory
 import com.example.kbctrafficlightsample.logic.trafficlight.TrafficLightStateFactoryWithFadeAwayTransitions
 import com.example.kbctrafficlightsample.logic.trafficlight.TrafficLightStateFactoryWithSnappyTransitions

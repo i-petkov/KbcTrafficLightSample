@@ -1,3 +1,3 @@
-package com.example.kbctrafficlightsample.logic.configuration
+package com.example.kbctrafficlightsample.data.configuration
 
 data class AppConfiguration(val useSmoothLightsTransition: Boolean)
