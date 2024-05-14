@@ -5,25 +5,25 @@ import com.example.kbctrafficlightsample.ui.theme.TrafficLightGreenActive
 import com.example.kbctrafficlightsample.ui.theme.TrafficLightGreenInactive
 import com.example.kbctrafficlightsample.ui.theme.TrafficLightRedActive
 import com.example.kbctrafficlightsample.ui.theme.TrafficLightRedInactive
-import com.example.kbctrafficlightsample.ui.theme.TrafficLightYellowActive
-import com.example.kbctrafficlightsample.ui.theme.TrafficLightYellowInactive
+import com.example.kbctrafficlightsample.ui.theme.TrafficLightOrangeActive
+import com.example.kbctrafficlightsample.ui.theme.TrafficLightOrangeInactive
 
 interface TrafficLightStateFactory {
     companion object {
         val activeRed = TrafficLightState(
             TrafficLightRedActive,
-            TrafficLightYellowInactive,
+            TrafficLightOrangeInactive,
             TrafficLightGreenInactive
         )
         val activeYellow = TrafficLightState(
             TrafficLightRedInactive,
-            TrafficLightYellowActive,
+            TrafficLightOrangeActive,
             TrafficLightGreenInactive
         )
 
         val activeGreen = TrafficLightState(
             TrafficLightRedInactive,
-            TrafficLightYellowInactive,
+            TrafficLightOrangeInactive,
             TrafficLightGreenActive
         )
     }

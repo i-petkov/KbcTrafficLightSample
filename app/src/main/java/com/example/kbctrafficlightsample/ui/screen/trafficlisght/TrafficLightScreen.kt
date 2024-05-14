@@ -42,7 +42,7 @@ fun TrafficLightScreen(viewModel: TrafficLightScreenInterface) {
             .fillMaxWidth()
             .padding(6.dp)
             .weight(1F)
-            .background(trafficLightState.value.yellow)
+            .background(trafficLightState.value.orange)
         )
         Spacer(modifier = Modifier
             .fillMaxWidth()

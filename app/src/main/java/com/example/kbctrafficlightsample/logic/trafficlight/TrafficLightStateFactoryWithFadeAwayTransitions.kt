@@ -1,6 +1,5 @@
 package com.example.kbctrafficlightsample.logic.trafficlight
 
-import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.lerp
 import com.example.kbctrafficlightsample.data.TRAFFIC_LIGHT_FULL_CYCLE_LENGTH
 import com.example.kbctrafficlightsample.data.TrafficLightState
@@ -11,27 +10,24 @@ import com.example.kbctrafficlightsample.ui.theme.TrafficLightGreenActive
 import com.example.kbctrafficlightsample.ui.theme.TrafficLightGreenInactive
 import com.example.kbctrafficlightsample.ui.theme.TrafficLightRedActive
 import com.example.kbctrafficlightsample.ui.theme.TrafficLightRedInactive
-import com.example.kbctrafficlightsample.ui.theme.TrafficLightYellowActive
-import com.example.kbctrafficlightsample.ui.theme.TrafficLightYellowInactive
+import com.example.kbctrafficlightsample.ui.theme.TrafficLightOrangeActive
+import com.example.kbctrafficlightsample.ui.theme.TrafficLightOrangeInactive
 
 class TrafficLightStateFactoryWithFadeAwayTransitions: TrafficLightStateFactory {
     companion object {
-        val transitionRedYellow = TrafficLightState(
-//            TrafficLightRedActive.compositeOver(TrafficLightRedInactive),
+        val transitionRedOrange = TrafficLightState(
             lerp(TrafficLightRedActive, TrafficLightRedInactive, 0.5F),
-            TrafficLightYellowActive,
+            TrafficLightOrangeActive,
             TrafficLightGreenInactive
         )
-        val transitionYellowGreen = TrafficLightState(
+        val transitionOrangeGreen = TrafficLightState(
             TrafficLightRedInactive,
-//            TrafficLightYellowActive.compositeOver(TrafficLightYellowInactive),
-            lerp(TrafficLightYellowActive, TrafficLightYellowInactive, 0.5F),
+            lerp(TrafficLightOrangeActive, TrafficLightOrangeInactive, 0.5F),
             TrafficLightGreenActive
         )
         val transitionGreenRed = TrafficLightState(
             TrafficLightRedActive,
-            TrafficLightYellowInactive,
-//            TrafficLightGreenActive.compositeOver(TrafficLightGreenInactive),
+            TrafficLightOrangeInactive,
             lerp(TrafficLightGreenActive, TrafficLightGreenInactive, 0.5F)
         )
     }
@@ -40,9 +36,9 @@ class TrafficLightStateFactoryWithFadeAwayTransitions: TrafficLightStateFactory 
         return when(time % TRAFFIC_LIGHT_FULL_CYCLE_LENGTH) {
             in 0 .. 99 -> transitionGreenRed
             in 100..3999 -> activeRed
-            in 4000..4099 -> transitionRedYellow
+            in 4000..4099 -> transitionRedOrange
             in 4100 .. 7999 -> activeYellow
-            in 8000 .. 8099 -> transitionYellowGreen
+            in 8000 .. 8099 -> transitionOrangeGreen
             else -> activeGreen
         }
     }
