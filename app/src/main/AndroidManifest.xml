@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KbcTrafficLightSample"
         tools:targetApi="31"
+        android:name=".KbcTrafficLightSampleApplication"
         >
         <activity
             android:name="com.example.kbctrafficlightsample.MainActivity"

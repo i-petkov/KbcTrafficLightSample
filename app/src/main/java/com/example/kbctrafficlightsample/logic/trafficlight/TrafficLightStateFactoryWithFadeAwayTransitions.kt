@@ -35,10 +35,10 @@ class TrafficLightStateFactoryWithFadeAwayTransitions: TrafficLightStateFactory 
     override fun trafficLightStateFor(time: Long): TrafficLightState {
         return when(time % TRAFFIC_LIGHT_FULL_CYCLE_LENGTH) {
             in 0 .. 99 -> transitionGreenRed
-            in 100..3999 -> activeRed
-            in 4000..4099 -> transitionRedOrange
-            in 4100 .. 7999 -> activeYellow
-            in 8000 .. 8099 -> transitionOrangeGreen
+            in 100..4000 -> activeRed
+            in 4001..4099 -> transitionRedOrange
+            in 4100 .. 8000 -> activeYellow
+            in 8001 .. 8099 -> transitionOrangeGreen
             else -> activeGreen
         }
     }

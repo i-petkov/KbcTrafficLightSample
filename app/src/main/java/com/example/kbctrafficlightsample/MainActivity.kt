@@ -28,13 +28,17 @@ class MainActivity : ComponentActivity() {
                     composable(Routes.Starting.route) {
                         CarModelScreen(
                             onCarModelConfirmed = { navController.navigate(Routes.TrafficLight.route) },
-                            viewModel = viewModel<CarModelScreenViewModel>()
+                            viewModel = viewModel<CarModelScreenViewModel>(
+                                factory = CarModelScreenViewModel.Factory
+                            )
                         )
                     }
 
                     composable(Routes.TrafficLight.route) {
                         TrafficLightScreen(
-                            viewModel = viewModel<TrafficLightScreenViewModel>(factory = TrafficLightScreenViewModel.Factory)
+                            viewModel = viewModel<TrafficLightScreenViewModel>(
+                                factory = TrafficLightScreenViewModel.Factory
+                            )
                         )
                     }
                 }

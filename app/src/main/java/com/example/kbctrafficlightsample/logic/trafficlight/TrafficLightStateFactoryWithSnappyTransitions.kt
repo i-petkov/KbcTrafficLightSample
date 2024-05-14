@@ -9,7 +9,7 @@ import com.example.kbctrafficlightsample.logic.trafficlight.TrafficLightStateFac
 class TrafficLightStateFactoryWithSnappyTransitions: TrafficLightStateFactory {
 
     override fun trafficLightStateFor(time: Long): TrafficLightState {
-        return when(time % TRAFFIC_LIGHT_FULL_CYCLE_LENGTH) {
+        return when(time% TRAFFIC_LIGHT_FULL_CYCLE_LENGTH) {
             in 0..4000 -> activeRed
             in 4001 .. 8000 -> activeYellow
             else -> activeGreen
